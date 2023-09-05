@@ -11,7 +11,7 @@ export const MOCK_FOLDERS: Folder[] = [
   },
   {
     id: "2",
-    title: "Amazon Auto Amazon Auto Amazon Auto",
+    title: "Amazon Auto",
     image: {
       src: "https://via.placeholder.com/150",
       alt: "Folder 2",
