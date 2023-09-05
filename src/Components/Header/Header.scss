@@ -1,0 +1,22 @@
+.header-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0 0 0;
+
+  .title {
+    font-family: "Open Sans ExtraBold", sans-serif;
+    font-size: 2.4rem;
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  .logo {
+    img {
+      border-radius: 50%;
+      box-shadow: 8px 4px 10px rgba(0, 0, 0, 0.2);
+      height: 7rem;
+    }
+  }
+}
+
