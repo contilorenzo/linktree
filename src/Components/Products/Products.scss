@@ -60,23 +60,22 @@
 
   a {
     align-items: center;
+    background: aliceblue;
     border-radius: 8px;
     color: black;
     display: flex;
     font-family: "Open Sans", sans-serif;
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 600;
-    padding: 0.4rem 1rem;
+    padding: 0.4rem 1rem 0.4rem 0.5rem;
+
+    &:hover {
+      background: #d5eaff;
+    }
 
     img {
-      height: 2rem;
-      margin-right: 1rem;
-    }
-  }
-
-  &:hover {
-    a {
-      background: aliceblue;
+      height: 1.2rem;
+      margin-right: 0.4rem;
     }
   }
 }
