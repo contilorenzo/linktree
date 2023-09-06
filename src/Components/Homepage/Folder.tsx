@@ -1,10 +1,11 @@
 import "./Folder.scss";
 import { type Folder as FolderProps } from "../../types";
+import { Link } from "react-router-dom";
 
-const Folder = ({ image, title }: Props): React.ReactElement => {
+const Folder = ({ image, title, id }: Props): React.ReactElement => {
   return (
     <div className="folder-wrapper">
-      <div className="folder">
+      <Link to={"/products/" + id} className="folder">
         <div className="image">
           <img src={image.src} alt={image.alt} />
         </div>
@@ -12,7 +13,7 @@ const Folder = ({ image, title }: Props): React.ReactElement => {
         <div className="arrow-icon">
           <img src="chevron-right.svg" alt="arrow" />
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

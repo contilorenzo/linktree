@@ -3,13 +3,13 @@ import "./Social.scss";
 const socialList = [
   {
     id: 1,
-    src: "instagram.svg",
+    src: "/instagram.svg",
     title: "Instagram",
     link: "https://www.instagram.com/gadgethunter.ita/",
   },
   {
     id: 2,
-    src: "tiktok.svg",
+    src: "/tiktok.svg",
     title: "TikTok",
     link: "https://www.tiktok.com/@gadgethunter.ita",
   },

@@ -1,23 +1,21 @@
 import "./App.scss";
-import { MOCK_FOLDERS } from "./__fixtures/mocks";
-import Folder from "./Components/Folder/Folder";
-import Header from "./Components/Header/Header";
-import Social from "./Components/Social/Social";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./Components/Layout/Layout";
+import Homepage from "./Components/Folder/Homepage";
+import Products from "./Components/Products/Products";
 
 const App = () => {
   return (
     <div className="app-wrapper">
       <div className="content">
-        <Header
-          logo={{ src: "logo.png", alt: "Gadget Hunter logo" }}
-          title="Gadget Hunter"
-        />
-        <Social />
-        <div className="folders">
-          {MOCK_FOLDERS.map((folder) => (
-            <Folder id={folder.id} title={folder.title} image={folder.image} />
-          ))}
-        </div>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Homepage />} />
+              <Route path="products/:folderId" element={<Products />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </div>
     </div>
   );

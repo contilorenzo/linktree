@@ -5,4 +5,14 @@ export type Folder = {
     src: string;
     alt: string;
   };
+  products: Product[];
+};
+
+export type Product = {
+  link: string;
+  title: string;
+  image: {
+    src: string;
+    alt: string;
+  };
 };
