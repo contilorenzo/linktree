@@ -4,17 +4,28 @@ import { useEffect, useState } from "react";
 import { parse } from "papaparse";
 import Loader from "../Loader/Loader";
 
+const validateProduct = (
+  product: Record<string, string>,
+  folderId: string,
+  uppercaseLocale: string,
+): boolean => {
+  if (product["Nicchia" + uppercaseLocale] !== folderId) return false;
+  if (!product["Prodotto" + uppercaseLocale]) return false;
+  if (!product["Link" + uppercaseLocale]) return false;
+  if (product["Linktree" + uppercaseLocale] !== "TRUE") return false;
+  return true;
+};
+
+const getBackText = (locale: string | undefined): string => {
+  if (locale === "it") return "Torna alla home";
+  return "Back to homepage";
+};
+
 const Products = (): React.ReactElement => {
-  const { folderId } = useParams();
+  const { folderId, locale } = useParams();
   const [products, setProducts] = useState<Record<string, string>[]>([]);
 
-  const validateProduct = (product: Record<string, string>): boolean => {
-    if (product.Nicchia !== folderId) return false;
-    if (!product.Prodotto) return false;
-    if (!product.LinkIT) return false;
-    if (product.LinktreeIT !== "TRUE") return false;
-    return true;
-  };
+  const uppercaseLocale = locale?.toUpperCase();
 
   useEffect(() => {
     parse(
@@ -24,7 +35,11 @@ const Products = (): React.ReactElement => {
         header: true,
         complete: (results) => {
           const productsList = results.data.filter((item) =>
-            validateProduct(item as Record<string, string>),
+            validateProduct(
+              item as Record<string, string>,
+              folderId ?? "",
+              uppercaseLocale ?? "US",
+            ),
           );
 
           setProducts(productsList as Record<string, string>[]);
@@ -38,9 +53,9 @@ const Products = (): React.ReactElement => {
   return (
     <>
       <div className="back">
-        <Link to="/">
+        <Link to={"/" + locale}>
           <img src={"/chevron-left.svg"} alt="arrow" />
-          Torna alla home
+          {getBackText(locale)}
         </Link>
       </div>
       {!products.length && <Loader />}
@@ -48,8 +63,8 @@ const Products = (): React.ReactElement => {
         {products.map((product, i) => (
           <a
             className="product"
-            key={product.Prodotto + i}
-            href={product.LinkIT}
+            key={product["Prodotto" + uppercaseLocale] + i}
+            href={product["Link" + uppercaseLocale]}
           >
             <span className="image">
               <img
@@ -57,7 +72,9 @@ const Products = (): React.ReactElement => {
                 alt="https://via.placeholder.com/150"
               />
             </span>
-            <span className="title">{product.Prodotto}</span>
+            <span className="title">
+              {product["Prodotto" + uppercaseLocale]}
+            </span>
           </a>
         ))}
       </div>

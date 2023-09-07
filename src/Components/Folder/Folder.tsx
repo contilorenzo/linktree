@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Folder = ({ title }: Props): React.ReactElement => {
   return (
     <div className="folder-wrapper">
-      <Link to={"/products/" + title} className="folder">
+      <Link to={"products/" + title} className="folder">
         <div className="image">
           <img src="https://via.placeholder.com/150" alt="Folder image" />
         </div>
