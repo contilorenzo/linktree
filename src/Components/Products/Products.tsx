@@ -48,6 +48,10 @@ const Products = (): React.ReactElement => {
     );
   }, []);
 
+  useEffect(() => {
+    console.log(products);
+  }, [products]);
+
   if (!folderId) return <div>Folder not found</div>;
 
   return (
@@ -67,10 +71,12 @@ const Products = (): React.ReactElement => {
             href={product["Link" + uppercaseLocale]}
           >
             <span className="image">
-              <img
-                src="https://via.placeholder.com/150"
-                alt="https://via.placeholder.com/150"
-              />
+              {product["Immagine" + uppercaseLocale] && (
+                <img
+                  src={product["Immagine" + uppercaseLocale]}
+                  alt={product["Prodotto" + uppercaseLocale]}
+                />
+              )}
             </span>
             <span className="title">
               {product["Prodotto" + uppercaseLocale]}
