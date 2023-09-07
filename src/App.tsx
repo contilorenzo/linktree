@@ -1,7 +1,7 @@
 import "./App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./Components/Layout/Layout";
-import Homepage from "./Components/Folder/Homepage";
+import Homepage from "./Components/Homepage/Homepage";
 import Products from "./Components/Products/Products";
 
 const App = () => {
