@@ -23,7 +23,10 @@ const Homepage = (): React.ReactElement => {
               (item) =>
                 (item as Record<string, string>)[
                   "Prodotto" + uppercaseLocale
-                ] !== "",
+                ] !== "" &&
+                (item as Record<string, string>)[
+                  "Linktree" + uppercaseLocale
+                ] === "TRUE",
             )
             .map(
               (item) =>
