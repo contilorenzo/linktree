@@ -48,10 +48,6 @@ const Products = (): React.ReactElement => {
     );
   }, []);
 
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
-
   if (!folderId) return <div>Folder not found</div>;
 
   return (
