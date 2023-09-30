@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { parse } from "papaparse";
 import Loader from "../Loader/Loader";
 import { useParams } from "react-router-dom";
+import ReactGA from "react-ga";
 
 const Homepage = (): React.ReactElement => {
   const [folders, setFolders] = useState<string[]>([]);
@@ -38,6 +39,10 @@ const Homepage = (): React.ReactElement => {
         },
       },
     );
+  }, []);
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname);
   }, []);
 
   return (

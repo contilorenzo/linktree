@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { parse } from "papaparse";
 import Loader from "../Loader/Loader";
+import ReactGA from "react-ga";
 
 const validateProduct = (
   product: Record<string, string>,
@@ -19,6 +20,14 @@ const validateProduct = (
 const getBackText = (locale: string | undefined): string => {
   if (locale === "it") return "Torna alla home";
   return "Back to homepage";
+};
+
+const collectAnalytics = (productName: string) => {
+  ReactGA.event({
+    category: "Product",
+    action: "Clicked on product",
+    label: productName,
+  });
 };
 
 const Products = (): React.ReactElement => {
@@ -61,23 +70,30 @@ const Products = (): React.ReactElement => {
       {!products.length && <Loader />}
       <div className="products-wrapper">
         {products.map((product, i) => (
-          <a
-            className="product"
+          <div
+            onClick={() =>
+              collectAnalytics(product["Prodotto" + uppercaseLocale])
+            }
             key={product["Prodotto" + uppercaseLocale] + i}
-            href={product["Link" + uppercaseLocale]}
           >
-            <span className="image">
-              {product["Immagine" + uppercaseLocale] && (
-                <img
-                  src={product["Immagine" + uppercaseLocale]}
-                  alt={product["Prodotto" + uppercaseLocale]}
-                />
-              )}
-            </span>
-            <span className="title">
-              {product["Prodotto" + uppercaseLocale]}
-            </span>
-          </a>
+            <a
+              className="product"
+              key={product["Prodotto" + uppercaseLocale] + i}
+              href={product["Link" + uppercaseLocale]}
+            >
+              <span className="image">
+                {product["Immagine" + uppercaseLocale] && (
+                  <img
+                    src={product["Immagine" + uppercaseLocale]}
+                    alt={product["Prodotto" + uppercaseLocale]}
+                  />
+                )}
+              </span>
+              <span className="title">
+                {product["Prodotto" + uppercaseLocale]}
+              </span>
+            </a>
+          </div>
         ))}
       </div>
     </>
