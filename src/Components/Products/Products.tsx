@@ -76,11 +76,7 @@ const Products = (): React.ReactElement => {
             }
             key={product["Prodotto" + uppercaseLocale] + i}
           >
-            <a
-              className="product"
-              key={product["Prodotto" + uppercaseLocale] + i}
-              href={product["Link" + uppercaseLocale]}
-            >
+            <a className="product" href={product["Link" + uppercaseLocale]}>
               <span className="image">
                 {product["Immagine" + uppercaseLocale] && (
                   <img

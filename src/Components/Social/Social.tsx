@@ -1,5 +1,6 @@
 import "./Social.scss";
 import { useParams } from "react-router-dom";
+import ReactGA from "react-ga";
 
 const getSocialList = (): Social[] => [
   {
@@ -28,19 +29,25 @@ const getHref = (social: Social, locale: string) => {
   }
 };
 
+const collectAnalytics = (socialName: string) => {
+  ReactGA.event({
+    category: "Social",
+    action: "Clicked on social",
+    label: socialName,
+  });
+};
+
 const Social = (): React.ReactElement => {
   const { locale } = useParams();
 
   return (
     <div className="social-wrapper">
       {getSocialList().map((social) => (
-        <a
-          className="social"
-          href={getHref(social, locale ?? "us")}
-          key={social.id}
-        >
-          <img src={social.src} alt={social.title} />
-        </a>
+        <div key={social.id} onClick={() => collectAnalytics(social.title)}>
+          <a className="social" href={getHref(social, locale ?? "us")}>
+            <img src={social.src} alt={social.title} />
+          </a>
+        </div>
       ))}
     </div>
   );
